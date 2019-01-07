@@ -1,8 +1,5 @@
 import com.google.gson.Gson
-import model.CategoriesItem
-import model.Filters
-import model.NewDailyEvents
-import model.Event
+import model.*
 import java.io.BufferedReader
 import java.io.File
 
@@ -46,9 +43,16 @@ fun main(args: Array<String>) {
         val categoriesItemList = mutableListOf<CategoriesItem>()
         dailyCategoryMap.keys.forEach { categoriesItemList.add(CategoriesItem(dailyCategoryMap[it], it)) }
 
+        val targetsItemList = listOf(TargetsItem("Club O2", 0, "Club O2"),
+                TargetsItem("Penguins", 0, "Penguins"),
+                TargetsItem("Stingrays", 0, "Stingrays"),
+                TargetsItem("Sharks", 0, "Sharks"),
+                TargetsItem("Circle C", 0, "Circle C"))
+
+
         finalList.add(NewDailyEvents(
                 "${date}T00:00:00-05:00",
-                Filters(categoriesItemList, listOf()),
+                Filters(categoriesItemList, targetsItemList),
                 dailyOldEventList?.size ?: 0,
                 dailyOldEventList ?: listOf()))
     }
